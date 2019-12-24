@@ -8,16 +8,18 @@ namespace AdventOfcodeDay2
     {
         #region Declarations
         // Constants
-        int OPERATIONRANGE = 4;
+
         // Properties
-        public IntCode Code {get; set;}
+        public IntCode Code { get; set; }
+        public int OperationRange {get; set;}
         // Variables
         #endregion
 
         #region Init
-        public IntcodeComputer(List<int> input)
+        public IntcodeComputer(List<int> input, int operationRange)
         {
-            Code = new IntCode(input, OPERATIONRANGE);
+            OperationRange = operationRange;
+            Code = new IntCode(input, operationRange);
         }
         #endregion
 
@@ -39,6 +41,12 @@ namespace AdventOfcodeDay2
                 }
                 Code.MoveToNextExecutionSet();
             }
+        }
+        #endregion
+        #region Helper
+        public void ResetInput(List<int> data)
+        {
+            Code = new IntCode(data, OperationRange);
         }
         #endregion
     }
